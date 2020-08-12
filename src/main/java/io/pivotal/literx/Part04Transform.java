@@ -1,6 +1,7 @@
 package io.pivotal.literx;
 
 import io.pivotal.literx.domain.User;
+import org.apache.commons.lang3.StringUtils;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
@@ -15,21 +16,29 @@ public class Part04Transform {
 
 	// TODO Capitalize the user username, firstname and lastname
 	Mono<User> capitalizeOne(Mono<User> mono) {
-		return null;
+		return mono.map(user -> new User(
+				StringUtils.upperCase(user.getUsername()),
+				StringUtils.upperCase(user.getFirstname()),
+				StringUtils.upperCase(user.getLastname()))
+		);
 	}
 
 //========================================================================================
 
 	// TODO Capitalize the users username, firstName and lastName
 	Flux<User> capitalizeMany(Flux<User> flux) {
-		return null;
+		return flux.map(user -> new User(
+				StringUtils.upperCase(user.getUsername()),
+				StringUtils.upperCase(user.getFirstname()),
+				StringUtils.upperCase(user.getLastname()))
+		);
 	}
 
 //========================================================================================
 
 	// TODO Capitalize the users username, firstName and lastName using #asyncCapitalizeUser
 	Flux<User> asyncCapitalizeMany(Flux<User> flux) {
-		return null;
+		return flux.flatMap(this::asyncCapitalizeUser);
 	}
 
 	Mono<User> asyncCapitalizeUser(User u) {

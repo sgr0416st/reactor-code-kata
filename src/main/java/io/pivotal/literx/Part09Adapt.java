@@ -43,7 +43,7 @@ public class Part09Adapt {
 
 	// TODO Adapt Flux to RxJava Flowable
 	Flowable<User> fromFluxToFlowable(Flux<User> flux) {
-		return null;
+		return Flowable.fromPublisher(flux);
 	}
 
 	// TODO Adapt RxJava Flowable to Flux
